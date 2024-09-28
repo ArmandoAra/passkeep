@@ -3,26 +3,43 @@ import 'package:provider/provider.dart';
 
 //Screens
 import 'screens/pass_screen.dart';
+import 'screens/root_screen.dart';
+import 'screens/auth_required_screen.dart';
 
-//data
-import 'data/data_list.dart';
+//providers
+import 'providers/data_list.dart';
+import 'providers/auth.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (_) => DataList()),
-    ],
-    child: const MyApp(),),);
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Auth()),
+        ChangeNotifierProvider(create: (_) => DataList()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const PassScreen(),
+      initialRoute: RootScreen.id,
+      routes: {
+        RootScreen.id: (context) => const RootScreen(),
+        PassScreen.id: (context) => const PassScreen(),
+        AuthRequiredScreen.id: (context) => const AuthRequiredScreen(),
+      },
     );
   }
 }

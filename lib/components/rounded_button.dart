@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class RoundedButton extends StatelessWidget {
-  const RoundedButton({super.key,required this.title,required this.colour, required this.onPressed});
+  const RoundedButton(
+      {super.key,
+      required this.title,
+      required this.colour,
+      required this.onPressed});
 
   final Color colour;
   final String title;
@@ -21,7 +25,7 @@ class RoundedButton extends StatelessWidget {
               child: MaterialButton(
                 //make disabled button
                 height: 50.0,
-                onPressed:() => onPressed(),
+                onPressed: () => onPressed(),
                 child: Text(
                   title,
                   style: TextStyle(
