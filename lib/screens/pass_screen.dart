@@ -25,7 +25,6 @@ class _PassScreenState extends State<PassScreen> {
     Auth auth = Provider.of<Auth>(context, listen: false);
 
     if (auth.isAuth) {
-      print(auth.isAuth);
       Provider.of<DataList>(context, listen: false).readData();
     }
     // Provider.of<DataList>(context, listen: false).readData();

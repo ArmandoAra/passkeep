@@ -39,7 +39,7 @@ class DataList with ChangeNotifier, DiagnosticableTreeMixin {
 
       // Actualiza el servicio en la lista
       int index = _services.indexWhere((service) => service['id'] == id);
-      print('index: $id');
+
       if (index == -1) {
         _services.add({
           'id': _uuid.v4(),
@@ -72,7 +72,6 @@ class DataList with ChangeNotifier, DiagnosticableTreeMixin {
     try {
       final Map<String, String> data =
           await _storage.readAll(); // Leer todos los datos
-      print('Data: $data');
       if (data.isNotEmpty) {
         // Asumiendo que tienes una lista de servicios almacenada en una clave específica
         final String? servicesJson =
@@ -115,7 +114,6 @@ class DataList with ChangeNotifier, DiagnosticableTreeMixin {
           _services.firstWhere((service) => service.id == id);
       _newService = currentService.name;
       _newPass = currentService.password;
-      print('Service: $_newService, Pass: $_newPass');
     } catch (e) {
       print('Error: $e');
     }
@@ -140,7 +138,6 @@ class DataList with ChangeNotifier, DiagnosticableTreeMixin {
   void updateServiceById(String id) async {
     try {
       int index = _services.indexWhere((service) => service.id == id);
-      // print('index: $id');
       _services[index] = Service(
         name: _newService,
         id: id,
@@ -156,7 +153,6 @@ class DataList with ChangeNotifier, DiagnosticableTreeMixin {
               })
           .toList());
       await _storage.write(key: 'services', value: toSave);
-      print('Service updated $toSave');
     } catch (e) {
       print('Error: $e');
     }
@@ -165,10 +161,7 @@ class DataList with ChangeNotifier, DiagnosticableTreeMixin {
 
   void deleteService(String id) async {
     int index = _services.indexWhere((service) => service.id == id);
-    // print('index: ${_services[index]}');
-    // print(_services.length);
     _services.removeAt(index);
-    // print(_services.length);
     try {
       String toSave = jsonEncode(_services
           .map((service) => {
@@ -180,7 +173,6 @@ class DataList with ChangeNotifier, DiagnosticableTreeMixin {
           .toList());
       // await _storage.write(key: 'services', value: jsonEncode(toSave));
       await _storage.write(key: 'services', value: toSave);
-      print('Service deleted $toSave');
     } catch (e) {
       print('Error: $e');
     }
