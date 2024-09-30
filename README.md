@@ -1,16 +1,13 @@
 # passkeep
 
-A new Flutter project.
+A simple password manager written in Dart.
 
-## Getting Started
+While a was learning Dart and Flutter in Udemy with Angela yu,
+I decided to write a simple password manager to practice my skills.
+This app saves the passwords in a local database using the local storage package, and
+have not any encryption, so it is not recommended to use it to store sensitive data,
+it is just a practice project.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features
+- Login with fingerprint or Pin
+- Add, Edit, Delete and View passwords

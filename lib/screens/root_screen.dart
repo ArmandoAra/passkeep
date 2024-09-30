@@ -176,10 +176,18 @@ class _RootScreenState extends State<RootScreen> {
               children: <Widget>[
                 ElevatedButton(
                   onPressed: () => _authenticate(context),
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all<Color>(
+                      Colors.blue,
+                    ),
+                    fixedSize: WidgetStateProperty.all<Size>(
+                      const Size(140, 80),
+                    ),
+                  ),
                   child: const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Icon(Icons.key_sharp),
+                      Icon(Icons.key, size: 60, color: Colors.white),
                     ],
                   ),
                 ),

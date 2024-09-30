@@ -4,7 +4,7 @@ import 'service_title.dart';
 
 import './pop_up_card.dart';
 import 'package:flutter_popup_card/flutter_popup_card.dart';
-import '../screens/edit_pass_screen.dart';
+import '../screens/input_pass_screen.dart';
 
 //models
 import '../models/service.dart';
@@ -57,7 +57,7 @@ class ServiceList extends StatelessWidget {
                 showModalBottomSheet(
                   isScrollControlled: true,
                   context: context,
-                  builder: (context) => EditPassScreen(
+                  builder: (context) => InputPassScreen(
                     serviceId: service.id.toString(),
                   ),
                 );

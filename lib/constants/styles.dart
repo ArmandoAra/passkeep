@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-InputDecoration kInputDecoration = InputDecoration(
+InputDecoration kInputDecoration = const InputDecoration(
   hintText: 'Enter the input name',
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   border: OutlineInputBorder(

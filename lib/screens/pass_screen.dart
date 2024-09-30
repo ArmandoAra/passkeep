@@ -7,8 +7,7 @@ import '../providers/auth.dart';
 
 import '../widgets/pass_list.dart';
 
-import 'add_pass_screen.dart';
-import 'add_pass_screen.dart';
+import 'input_pass_screen.dart';
 
 class PassScreen extends StatefulWidget {
   static const String id = 'pass_screen';
@@ -32,11 +31,11 @@ class _PassScreenState extends State<PassScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final Auth auth = Provider.of<Auth>(context);
+
     if (Provider.of<Auth>(context).isAuth) {
       return Scaffold(
         backgroundColor: Colors.lightBlueAccent,
-        //Hace aparecer la ventana de agregar un nuevo servicio
+
         floatingActionButton: FloatingActionButton(
           heroTag: 'add',
           backgroundColor: Colors.lightBlueAccent,
@@ -52,7 +51,7 @@ class _PassScreenState extends State<PassScreen> {
             showModalBottomSheet(
               isScrollControlled: true,
               context: context,
-              builder: (context) => const AddPassScreen(),
+              builder: (context) => const InputPassScreen(serviceId: '',),
             );
           },
         ),
@@ -79,7 +78,7 @@ class _PassScreenState extends State<PassScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
+                      const Row(
                         children: [
                           Text(
                             'Tap to',
@@ -89,7 +88,7 @@ class _PassScreenState extends State<PassScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(
+                            padding: EdgeInsets.only(
                                 left: 2.0, right: 2.0, bottom: 5.0),
                             child: Text(
                               'Copy',
@@ -110,7 +109,7 @@ class _PassScreenState extends State<PassScreen> {
                       ),
                       Row(
                         children: [
-                          Text(
+                          const Text(
                             'Long press to',
                             style: TextStyle(
                               color: Colors.white,
@@ -151,11 +150,9 @@ class _PassScreenState extends State<PassScreen> {
                         ),
                       ),
                       Switch(
-                        // This bool value toggles the switch.
                         value: dataList.isPassVisible,
                         activeColor: Colors.blueAccent,
                         onChanged: (value) {
-                          // This is called when the user toggles the switch.
                           dataList.togglePassVisibility();
                         },
                       ),
@@ -181,7 +178,6 @@ class _PassScreenState extends State<PassScreen> {
         ),
       );
     } else {
-      print('Not Authenticated');
       return const RootScreen();
     }
   }

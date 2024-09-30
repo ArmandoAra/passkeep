@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 //Screens
 import 'screens/pass_screen.dart';
 import 'screens/root_screen.dart';
-import 'screens/auth_required_screen.dart';
 
 //providers
 import 'providers/data_list.dart';
@@ -38,7 +37,6 @@ class _MyAppState extends State<MyApp> {
       routes: {
         RootScreen.id: (context) => const RootScreen(),
         PassScreen.id: (context) => const PassScreen(),
-        AuthRequiredScreen.id: (context) => const AuthRequiredScreen(),
       },
     );
   }

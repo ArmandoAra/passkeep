@@ -82,7 +82,7 @@ class ServiceTitle extends StatelessWidget {
                           Colors.lightBlueAccent),
                       shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
+                          borderRadius: BorderRadius.circular(50.0),
                         ),
                       ),
                     ),

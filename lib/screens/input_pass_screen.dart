@@ -13,17 +13,34 @@ import '../providers/data_list.dart';
 //utils
 import '../utils/pass_generator.dart';
 
-// Metodo que retorna un widget para ser usado en el showModalBottomSheet
-class AddPassScreen extends StatefulWidget {
-  const AddPassScreen({super.key});
+class InputPassScreen extends StatefulWidget {
+  const InputPassScreen({super.key, required this.serviceId});
+
+  final String serviceId;
 
   @override
-  State<AddPassScreen> createState() => _AddPassScreenState();
+  State<InputPassScreen> createState() => _InputPassScreenState();
 }
 
-class _AddPassScreenState extends State<AddPassScreen> {
+class _InputPassScreenState extends State<InputPassScreen> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _serviceNameController = TextEditingController();
+  String actionTextButton = 'Save';
+
+  @override
+  void initState() {
+    super.initState();
+    if(widget.serviceId.isNotEmpty){
+      actionTextButton = 'Update';
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Provider.of<DataList>(context, listen: false)
+            .getServiceById(widget.serviceId);
+        _controller.text = Provider.of<DataList>(context, listen: false).newPass;
+        _serviceNameController.text =
+            Provider.of<DataList>(context, listen: false).newService;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +99,6 @@ class _AddPassScreenState extends State<AddPassScreen> {
                       fontSize: 20.0,
                     ),
                   ),
-                  //Slider para la fortaleza de la contraseña
                   Slider(
                     value: dataList.strength,
                     onChanged: (double value) {
@@ -95,12 +111,11 @@ class _AddPassScreenState extends State<AddPassScreen> {
                     divisions: 17,
                     label: dataList.strength.round().toString(),
                   ),
-                  //Boton para generar contraseña
+
                   RoundedButton(
                     title: 'Generate',
                     colour: Colors.lightBlue,
                     onPressed: () {
-                      //Generar contraseña
                       setState(() {
                         _controller.text =
                             passGenerator(dataList.strength.round());
@@ -109,14 +124,19 @@ class _AddPassScreenState extends State<AddPassScreen> {
                     },
                   ),
 
-                  //Boton para guardar
                   RoundedButton(
-                    title: dataList.inputFilled() ? 'Save' : 'Fill the fields',
+                    title: dataList.inputFilled() ? actionTextButton : 'Fill the fields',
                     colour: dataList.inputFilled() ? Colors.green : Colors.grey,
                     onPressed: () {
                       if (dataList.inputFilled()) {
-                        dataList.saveData(
-                            dataList.id, dataList.newService, dataList.newPass);
+                        if (widget.serviceId.isNotEmpty) {
+                          dataList.updateServiceById(
+                              widget.serviceId);
+                        } else {
+                          dataList.saveData(
+                              dataList.newService, dataList.newPass);
+
+                        }
                         dataList.resetProvider();
                         Navigator.pop(context);
                       }

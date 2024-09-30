@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_popup_card/flutter_popup_card.dart';
 import 'dart:math' as math;
 
 //data
@@ -12,10 +11,6 @@ class PopupCardDetails extends StatelessWidget {
 
   final String serviceName;
   final String id;
-
-  void _logoutPressed(BuildContext context) {
-    Navigator.of(context).pop('Logout pressed');
-  }
 
   @override
   Widget build(BuildContext context) {
